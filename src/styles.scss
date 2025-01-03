@@ -1,1 +1,63 @@
+@use '@angular/material' as mat;
+// html {
+//     @include mat.theme(( color: ( primary: mat.$rose-palette, tertiary: mat.$orange-palette, theme-type: light, ), typography: Roboto, density: 0));
+// }
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+:host {
+  background: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  border: 1px solid var(--mat-sys-outline-variant);
+  font: var(--mat-sys-body-large);
+}
+
+.cdk-virtual-scroll-content-wrapper {
+  contain: inline-size !important; // fix for virtual-scroll blank space when filter brands
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.small-spinner .mat-spinner circle {
+  width: 40px;
+}
+
+.small-spinner {
+  width: 50px;
+  height: 50px;
+}
+
+.mat-mdc-list-item {
+  cursor: pointer;
+}
+
+.ml {
+  margin-left: 15px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  padding: 20px;
+}

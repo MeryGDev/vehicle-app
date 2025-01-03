@@ -1,0 +1,24 @@
+<div *ngIf="loading; else content" class="ml">
+  <p>Cargando tipos de vehículos...</p>
+  <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #content>
+  <div class="ml">
+    <div *ngIf="!types || types.length === 0 || error" class="error-message">
+      <p>No se encontraron tipos de vehículos para esta marca.</p>
+    </div>
+
+    <div *ngIf="types && types.length > 0">
+      <h3>Selecciona un tipo de vehículo para ver los modelos disponibles.</h3>
+      <mat-form-field appearance="fill" class="vehicle-select">
+        <mat-label>Tipos de vehículos</mat-label>
+        <mat-select (selectionChange)="selectType($event.value)">
+          <mat-option *ngFor="let type of uniqueTypes" [value]="type">
+            {{ type.VehicleTypeName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</ng-template>

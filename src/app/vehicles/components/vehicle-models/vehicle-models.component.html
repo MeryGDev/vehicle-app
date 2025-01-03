@@ -1,0 +1,31 @@
+<div class="ml" *ngIf="loading; else content">
+  <p>Cargando modelos de vehículos...</p>
+  <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #content>
+  <div class="ml">
+    <div *ngIf="models && models.length > 0">
+      <h3>Modelos disponibles</h3>
+
+      <mat-grid-list cols="4" rowHeight="250px" gutterSize="16px">
+        <mat-grid-tile *ngFor="let model of models">
+          <mat-card class="model-card">
+            <mat-card-header>
+              <mat-card-title>{{ model.Model_Name }}</mat-card-title>
+            </mat-card-header>
+            <!-- <img mat-card-image src="https://picsum.photos/450/150" alt="Modelo de vehículo" /> -->
+            <img mat-card-image [src]="imagePath" alt="Modelo de vehículo" />
+            <mat-card-content class="custom-card-content">
+              <p>Detalles del modelo: {{ model.Model_Name }}</p>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+    <div *ngIf="models?.length === 0" class="error-message">
+      <p>No hay modelos disponibles para el tipo seleccionado.</p>
+    </div>
+  </div>
+</ng-template>

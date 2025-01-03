@@ -1,0 +1,13 @@
+<app-vehicle-types
+  [types]="(vehicleTypes$ | async) || []"
+  [loading]="(loadingTypes$ | async) || false"
+  [error]="error$ | async"
+  (onSelectType)="onTypeSelect($event)"
+></app-vehicle-types>
+
+<app-vehicle-models
+  *ngIf="selectedVehicleType"
+  [models]="(models$ | async) || []"
+  [loading]="(loadingModels$ | async) || false"
+  [error]="error$ | async"
+></app-vehicle-models>

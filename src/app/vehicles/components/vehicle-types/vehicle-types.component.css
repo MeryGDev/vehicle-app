@@ -1,0 +1,40 @@
+mat-card {
+  margin-bottom: 20px;
+}
+
+mat-list-item {
+  cursor: pointer;
+}
+
+mat-list-item:hover {
+  background-color: #f5f5f5;
+}
+
+.vehicle-type-item {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.vehicle-type-item:hover {
+  background-color: #f1f1f1;
+}
+
+.vehicle_types_container {
+  margin-left: 15px;
+}
+
+mat-spinner {
+  display: block;
+  margin: 0 auto;
+}
+
+.vehicle-select {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+  display: block;
+}
+
+mat-form-field {
+  width: 100%;
+}

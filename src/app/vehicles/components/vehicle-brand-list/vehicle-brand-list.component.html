@@ -1,0 +1,31 @@
+<h1 [ngStyle]="{ padding: '20px' }" class="mat-margin">Encuentra tu fabricante favorito:</h1>
+
+<div [ngStyle]="{ padding: '20px' }" *ngIf="loadingBrands$ | async">Cargando marcas...</div>
+
+<div *ngIf="!(loadingBrands$ | async)">
+  <div *ngIf="error$ | async as error" class="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <app-search (searchChanged)="onSearchChanged($event)"></app-search>
+
+  <cdk-virtual-scroll-viewport itemSize="150" class="virtual-scroll-container">
+    <div class="grid-container">
+      <!-- Usamos *cdkVirtualFor para iterar sobre las filas -->
+      <div *cdkVirtualFor="let row of rows$ | async" class="grid-row">
+        <!-- Iteramos sobre las marcas dentro de la fila -->
+        <div *ngFor="let brand of row" class="grid-item">
+          <mat-card>
+            <mat-card-header>
+              <mat-icon>directions_car</mat-icon>
+              <mat-card-title>{{ brand.Make_Name }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <button mat-raised-button color="primary" (click)="viewDetails(brand.Make_Name)">Ver detalles</button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>
