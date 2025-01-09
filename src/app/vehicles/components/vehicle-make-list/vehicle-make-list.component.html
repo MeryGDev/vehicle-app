@@ -1,6 +1,9 @@
-<h1 [ngStyle]="{ padding: '20px' }" class="mat-margin">Encuentra tu fabricante favorito:</h1>
+<h1 class="mat-padding">Encuentra tu fabricante favorito:</h1>
 
-<div [ngStyle]="{ padding: '20px' }" *ngIf="loadingMakes$ | async">Cargando marcas...</div>
+<div class="mat-padding" *ngIf="loadingMakes$ | async">
+  <p>Cargando marcas...</p>
+  <mat-spinner></mat-spinner>
+</div>
 
 <div *ngIf="!(loadingMakes$ | async)">
   <div *ngIf="error$ | async as error" class="error">
@@ -12,7 +15,7 @@
   <cdk-virtual-scroll-viewport itemSize="150" class="virtual-scroll-container">
     <div class="grid-container">
       <div *cdkVirtualFor="let row of rows$ | async" class="grid-row">
-        <div *ngFor="let make of row" class="grid-item">
+        <div *ngFor="let make of row; trackBy: trackByMakeId" class="grid-item">
           <mat-card>
             <mat-card-header>
               <mat-icon>directions_car</mat-icon>

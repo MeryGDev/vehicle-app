@@ -43,13 +43,11 @@ app-navbar {
   display: block;
 }
 
-.small-spinner .mat-spinner circle {
-  width: 40px;
-}
-
-.small-spinner {
-  width: 50px;
-  height: 50px;
+mat-spinner {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 350px;
+  zoom: 0.7;
 }
 
 .mat-mdc-list-item {

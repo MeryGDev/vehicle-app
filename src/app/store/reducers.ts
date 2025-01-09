@@ -4,11 +4,8 @@ import {
   loadVehicleMakesSuccess,
   loadVehicleMakesFailure,
   filterVehicleMakes,
-  loadVehicleModelsSuccess,
-  loadVehicleModelsFailure,
   loadVehicleTypesSuccess,
   loadVehicleTypesFailure,
-  loadVehicleModels,
   loadVehicleTypes,
   resetVehicleData,
   loadVehicleModelsByType,
@@ -45,7 +42,9 @@ export const initialState: VehicleState = {
 
 export const vehicleReducer = createReducer(
   initialState,
-  on(loadVehicleMakes, (state) => ({ ...state, loadingMakes: true })), // Activar estado de carga
+
+  // Loading Makes Actions
+  on(loadVehicleMakes, (state) => ({ ...state, loadingMakes: true })),
   on(loadVehicleMakesSuccess, (state, { makes }) => ({
     ...state,
     makes,
@@ -58,16 +57,9 @@ export const vehicleReducer = createReducer(
     loadingMakes: false,
     error,
   })),
-  on(filterVehicleMakes, (state, { searchQuery }) => {
-    const filteredMakes = state.makes.filter((make) =>
-      make.Make_Name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    return {
-      ...state,
-      searchQuery,
-      filteredMakes,
-    };
-  }),
+
+
+  // Loading Vehicle Types Actions
   on(loadVehicleTypes, (state) => ({ ...state, loadingTypes: true })),
   on(loadVehicleTypesSuccess, (state, { vehicleTypes }) => ({
     ...state,
@@ -80,6 +72,8 @@ export const vehicleReducer = createReducer(
     loadingTypes: false,
     error,
   })),
+
+  // Loading Vehicle Models Actions
   on(loadVehicleModelsByType, (state) => ({ ...state, loadingModels: true })),
   on(loadVehicleModelsByTypeSuccess, (state, { models }) => ({
     ...state,
@@ -92,6 +86,20 @@ export const vehicleReducer = createReducer(
     loadingModels: false,
     error,
   })),
+
+  // Filter Makes Action
+  on(filterVehicleMakes, (state, { searchQuery }) => {
+    const filteredMakes = state.makes.filter((make) =>
+      make.Make_Name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    return {
+      ...state,
+      searchQuery,
+      filteredMakes,
+    };
+  }),
+
+  // Reset Vehicle Data
   on(resetVehicleData, (state) => ({
     ...state,
     models: [],

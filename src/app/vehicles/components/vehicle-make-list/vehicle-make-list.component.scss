@@ -15,7 +15,7 @@
 
 .mat-mdc-card {
   cursor: pointer;
-  &:hover{
+  &:hover {
     transform: scale(1.05);
   }
 }
@@ -67,6 +67,12 @@ mat-card {
   align-items: center;
 }
 
+@media (max-width: 1400px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 992px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
@@ -77,11 +83,17 @@ mat-card {
   .grid-container {
     grid-template-columns: repeat(1, 1fr);
   }
+  mat-card {
+    mat-card-header {
+      flex-direction: column;
+      align-items: center;
+      mat-icon {
+        margin-bottom: 12px;
+      }
+    }
+  }
 }
 
-// :host {
-//     background: var(--mat-sys-primary-container);
-//     color: var(--mat-sys-on-primary-container);
-//     border: 1px solid var(--mat-sys-outline-variant);
-//     font: var(--mat-sys-body-large);
-// }
+.mat-padding {
+  padding: 20px;
+}

@@ -24,18 +24,6 @@
   align-items: center;
 }
 
-@media (max-width: 992px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
 .model-card {
   cursor: pointer;
   display: flex;
@@ -95,4 +83,16 @@
 .error-message {
   color: #f44336;
   text-align: center;
+}
+
+@media (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

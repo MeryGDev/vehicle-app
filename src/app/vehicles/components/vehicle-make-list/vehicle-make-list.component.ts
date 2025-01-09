@@ -22,11 +22,11 @@ import { VehicleMake } from '../../models/vehicle-make.model';
   styleUrl: './vehicle-make-list.component.scss',
 })
 export class VehicleMakeListComponent implements OnInit {
-  // State properties
   makes$: Observable<VehicleMake[]> = new Observable();
-  rows$: Observable<VehicleMake[][]> = new Observable();
   loadingMakes$: Observable<boolean> = new Observable();
   error$: Observable<string | null> = new Observable();
+  rows$: Observable<VehicleMake[][]> = new Observable();
+
   searchQuery: string = '';
 
   constructor(
@@ -35,24 +35,27 @@ export class VehicleMakeListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to store selectors to get updated values
+    this.store.dispatch(loadVehicleMakes());
+
+    // Suscribirse a los selectores de store para obtener valores actualizados
     this.makes$ = this.store.pipe(select(selectFilteredVehicleMakes));
     this.loadingMakes$ = this.store.pipe(select(selectLoadingMakes));
     this.error$ = this.store.pipe(select(selectError));
 
-    this.rows$ = this.makes$.pipe(
-      map((makes) => {
-        if (!makes || makes.length === 0) return [];
-        const rows = [];
-        for (let i = 0; i < makes.length; i += 4) {
-          rows.push(makes.slice(i, i + 4)); // Divide makes into rows of 4
-        }
-        return rows;
-      })
-    );
+    this.rows$ = this.makes$.pipe(map((makes) => this.chunkMakes(makes)));
+  }
 
-    // Dispatch the action to load makes
-    this.store.dispatch(loadVehicleMakes());
+  // Función para dividir las marcas en filas de 4
+  chunkMakes(makes: VehicleMake[]): VehicleMake[][] {
+    const rows = [];
+    for (let i = 0; i < makes.length; i += 4) {
+      rows.push(makes.slice(i, i + 4));
+    }
+    return rows;
+  }
+
+  trackByMakeId(index: number, make: VehicleMake): number {
+    return make.Make_ID;
   }
 
   onSearchChanged(searchQuery: string): void {

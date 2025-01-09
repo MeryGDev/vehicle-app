@@ -1,33 +1,35 @@
-<div class="ml" *ngIf="loading; else content">
+<div class="ml" *ngIf="loadingModels$ | async; else content">
   <p>Cargando modelos de vehículos...</p>
   <mat-spinner></mat-spinner>
 </div>
 
 <ng-template #content>
   <div class="ml">
-    <div *ngIf="models && models.length > 0">
-      <h3>Modelos disponibles</h3>
-      <cdk-virtual-scroll-viewport itemSize="200" class="virtual-scroll-container">
-        <div class="grid-container">
-          <div *cdkVirtualFor="let row of rows" class="grid-row">
-            <div *ngFor="let model of row" class="grid-item">
-              <mat-card class="model-card">
-                <mat-card-header class="model-card-header">
-                  <mat-card-title class="model-card-title">{{ model.Model_Name }}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="model-card-content">
-                  <div class="model-icon">
-                    <mat-icon>directions_car</mat-icon>
-                  </div>
-                  <p class="model-description">Detalles del modelo: {{ model.Model_Name }}</p>
-                </mat-card-content>
-              </mat-card>
+    <div *ngIf="models$ | async as models">
+      <div *ngIf="models.length > 0">
+        <h3>Modelos disponibles</h3>
+        <cdk-virtual-scroll-viewport itemSize="200" class="virtual-scroll-container">
+          <div class="grid-container">
+            <div *cdkVirtualFor="let row of rows" class="grid-row">
+              <div *ngFor="let model of row" class="grid-item">
+                <mat-card class="model-card">
+                  <mat-card-header class="model-card-header">
+                    <mat-card-title class="model-card-title vehicle-model-name">{{ model.Model_Name }}</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="model-card-content">
+                    <div class="model-icon">
+                      <mat-icon>directions_car</mat-icon>
+                    </div>
+                    <p class="model-description">Detalles del modelo: {{ model.Model_Name }}</p>
+                  </mat-card-content>
+                </mat-card>
+              </div>
             </div>
           </div>
-        </div>
-      </cdk-virtual-scroll-viewport>
+        </cdk-virtual-scroll-viewport>
+      </div>
     </div>
-    <div *ngIf="models?.length === 0" class="error-message">
+    <div *ngIf="(models$ | async)?.length === 0" class="error-message">
       <p>No hay modelos disponibles para el tipo seleccionado.</p>
     </div>
   </div>

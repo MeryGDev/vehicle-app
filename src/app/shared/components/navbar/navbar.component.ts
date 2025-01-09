@@ -15,24 +15,7 @@ export class NavbarComponent {
     private vehicleService: VehicleService
   ) {}
 
-  // Método para navegar a la página de inicio (listado de marcas)
   navigateToHome(): void {
     this.router.navigate(['/']);
   }
-
-  // Método para navegar a la página de búsqueda
-  navigateToSearch(): void {
-    this.router.navigate(['/search']);
-  }
-
-  // ngOnInit(): void {
-  //   this.vehicleService.getMakes().subscribe({
-  //     next: (makes) => {
-  //       console.log('Marcas de vehículos obtenidas:', makes);
-  //     },
-  //     error: (err) => {
-  //       console.error('Error al obtener marcas:', err);
-  //     },
-  //   });
-  // }
 }

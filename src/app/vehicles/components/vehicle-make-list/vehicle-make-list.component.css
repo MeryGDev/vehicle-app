@@ -68,6 +68,12 @@ mat-card {
   align-items: center;
 }
 
+@media (max-width: 1400px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 992px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
@@ -78,4 +84,15 @@ mat-card {
   .grid-container {
     grid-template-columns: repeat(1, 1fr);
   }
+  mat-card mat-card-header {
+    flex-direction: column;
+    align-items: center;
+  }
+  mat-card mat-card-header mat-icon {
+    margin-bottom: 12px;
+  }
+}
+
+.mat-padding {
+  padding: 20px;
 }

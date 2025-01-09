@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button class="home-button" mat-button (click)="navigateToHome()">Inicio</button>
-    <h1 class="navbar-title">Vehicle Searcher</h1>
+    <button class="navbar-button" mat-button (click)="navigateToHome()">Inicio</button>
+    <h1 class="navbar-title" (click)="navigateToHome()">Vehicle Searcher</h1>
+    <button class="navbar-button" mat-button>Otros</button>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -24,18 +24,6 @@
   align-items: center;
 }
 
-@media (max-width: 992px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
 .model-card {
   cursor: pointer;
   display: flex;
@@ -97,6 +85,14 @@
   text-align: center;
 }
 
-// .ml {
-//   padding: 20px;
-// }
+@media (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

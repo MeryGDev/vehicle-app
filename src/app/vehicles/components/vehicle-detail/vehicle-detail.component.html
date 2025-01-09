@@ -8,7 +8,7 @@
 
 <app-vehicle-models
   *ngIf="selectedVehicleType"
-  [models]="(models$ | async) || []"
-  [loading]="(loadingModels$ | async) || false"
+  [selectedVehicleType]="selectedVehicleType"
+  [selectedMake]="make"
   [error]="error$ | async"
 ></app-vehicle-models>

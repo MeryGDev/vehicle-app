@@ -3,14 +3,10 @@ import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { VehicleService } from '../vehicles/services/vehicle.service';
 import {
   loadVehicleMakes,
   loadVehicleMakesSuccess,
   loadVehicleMakesFailure,
-  // loadVehicleModels,
-  // loadVehicleModelsSuccess,
-  // loadVehicleModelsFailure,
   loadVehicleModelsByType,
   loadVehicleModelsByTypeSuccess,
   loadVehicleModelsByTypeFailure,
@@ -18,8 +14,10 @@ import {
   loadVehicleTypesSuccess,
   loadVehicleTypesFailure,
 } from './actions';
+import { VehicleService } from '../vehicles/services/vehicle.service';
 import { VehicleMake } from '../vehicles/models/vehicle-make.model';
 import { VehicleModel } from '../vehicles/models/vehicle-model.model';
+import { VehicleType } from '../vehicles/models/vehicle-type.model';
 
 @Injectable()
 export class VehicleEffects {
@@ -40,26 +38,12 @@ export class VehicleEffects {
     )
   );
 
-  // loadVehicleModels$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(loadVehicleModels),
-  //     switchMap((action) =>
-  //       this.vehicleService.getModelsByMake(action.make).pipe(
-  //         map((models) => loadVehicleModelsSuccess({ models })),
-  //         catchError((error) =>
-  //           of(loadVehicleModelsFailure({ error: error?.message || 'Failed to load vehicle models' }))
-  //         )
-  //       )
-  //     )
-  //   )
-  // );
-
   loadVehicleTypes$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadVehicleTypes),
       switchMap((action) =>
         this.vehicleService.getVehicleTypesByMake(action.make).pipe(
-          map((vehicleTypes) => loadVehicleTypesSuccess({ vehicleTypes })),
+          map((vehicleTypes: VehicleType[]) => loadVehicleTypesSuccess({ vehicleTypes })),
           catchError((error) =>
             of(loadVehicleTypesFailure({ error: error?.message || 'Failed to load vehicle types' }))
           )
@@ -75,11 +59,7 @@ export class VehicleEffects {
         this.vehicleService.getModelsForMakeAndType(action.make, action.vehicleType).pipe(
           map((models: VehicleModel[]) => loadVehicleModelsByTypeSuccess({ models })),
           catchError((error) =>
-            of(
-              loadVehicleModelsByTypeFailure({
-                error: error?.message || 'Failed to load vehicle models by type',
-              })
-            )
+            of( loadVehicleModelsByTypeFailure({ error: error?.message || 'Failed to load vehicle models by type' }))
           )
         )
       )

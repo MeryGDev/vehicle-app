@@ -20,9 +20,10 @@ export class VehicleService {
   getMakes(): Observable<VehicleMake[]> {
     const url = `${this.apiUrl}/getallmakes?format=json`;
     return this.http.get<VehicleApiResponse>(url).pipe(
-      map((response) => {
-        console.log('API Response:', response);
-        return response.Results;
+      map((response) => response.Results),
+      catchError((error) => {
+        console.error('Error al cargar las marcas:', error);
+        return of([]);
       })
     );
   }
@@ -30,7 +31,6 @@ export class VehicleService {
   getVehicleTypesByMake(make: string): Observable<VehicleType[]> {
     const sanitizedMake = this.sanitizeMake(make);
     const url = `${this.apiUrl}/getvehicletypesformake/${sanitizedMake}?format=json`;
-    console.log('URL Generada:', url);
     return this.http.get<VehicleTypesResponse>(url).pipe(
       map((response) => response.Results),
       catchError((error) => {
@@ -43,11 +43,11 @@ export class VehicleService {
   getModelsForMakeAndType(make: string, vehicleType: string): Observable<VehicleModel[]> {
     const sanitizedMake = this.sanitizeMake(make);
     const url = `${this.apiUrl}/getmodelsformakeyear/make/${sanitizedMake}/vehicleType/${vehicleType}?format=json`;
-    console.log('URL Generada:', url);
     return this.http.get<VehicleModelsResponse>(url).pipe(
-      map((response) => {
-        console.log('Respuesta del servidor:', response);
-        return response.Results || [];
+      map((response) => response.Results),
+      catchError((error) => {
+        console.error('Error al cargar los modelos:', error);
+        return of([]);
       })
     );
   }
