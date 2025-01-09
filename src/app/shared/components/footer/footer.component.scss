@@ -3,12 +3,7 @@
   color: white;
   padding: 20px;
   margin-top: 30px;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(63, 81, 176, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(63, 81, 176, 1) 35%, rgba(0, 212, 255, 1) 100%);
 }
 
 mat-divider {
@@ -41,7 +36,6 @@ mat-divider {
     padding: 0;
     li a {
       color: var(--mat-sys-on-surface);
-      // text-decoration: none;
       padding: 5px 0;
       display: inline-block;
       &:hover {

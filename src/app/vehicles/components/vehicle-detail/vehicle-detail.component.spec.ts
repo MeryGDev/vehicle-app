@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { provideHttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { of } from 'rxjs';
@@ -12,16 +11,13 @@ describe('VehicleDetailComponent', () => {
 
   beforeEach(async () => {
     const activatedRouteMock = {
-      params: of({ id: '17 CREEK ENTERPRISES' })  // Mockeamos el parámetro 'id' que viene en la URL
+      params: of({ id: '17 CREEK ENTERPRISES' }), // Mockeamos el parámetro 'id' que viene en la URL
     };
 
     await TestBed.configureTestingModule({
-      imports: [
-        VehicleDetailComponent,
-        StoreModule.forRoot(vehicleReducer)
-      ],
+      imports: [VehicleDetailComponent, StoreModule.forRoot(vehicleReducer)],
       providers: [
-        { provide: ActivatedRoute, useValue: activatedRouteMock }  // Mockeamos ActivatedRoute
+        { provide: ActivatedRoute, useValue: activatedRouteMock }, // Mockeamos ActivatedRoute
       ],
     }).compileComponents();
 

@@ -19,7 +19,7 @@ describe('VehicleMakeListComponent', () => {
       providers: [provideHttpClient(), provideAnimations(), provideMockStore({ initialState: {} }), VehicleService],
     }).compileComponents();
 
-    store = TestBed.inject(MockStore); // Inyectamos el MockStore
+    store = TestBed.inject(MockStore);
     const fixture = TestBed.createComponent(VehicleMakeListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
