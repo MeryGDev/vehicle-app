@@ -7,23 +7,26 @@
   <div class="ml">
     <div *ngIf="models && models.length > 0">
       <h3>Modelos disponibles</h3>
-
-      <mat-grid-list cols="4" rowHeight="250px" gutterSize="16px">
-        <mat-grid-tile *ngFor="let model of models">
-          <mat-card class="model-card">
-            <mat-card-header>
-              <mat-card-title>{{ model.Model_Name }}</mat-card-title>
-            </mat-card-header>
-            <!-- <img mat-card-image src="https://picsum.photos/450/150" alt="Modelo de vehículo" /> -->
-            <img mat-card-image [src]="imagePath" alt="Modelo de vehículo" />
-            <mat-card-content class="custom-card-content">
-              <p>Detalles del modelo: {{ model.Model_Name }}</p>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <cdk-virtual-scroll-viewport itemSize="200" class="virtual-scroll-container">
+        <div class="grid-container">
+          <div *cdkVirtualFor="let row of rows" class="grid-row">
+            <div *ngFor="let model of row" class="grid-item">
+              <mat-card class="model-card">
+                <mat-card-header class="model-card-header">
+                  <mat-card-title class="model-card-title">{{ model.Model_Name }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="model-card-content">
+                  <div class="model-icon">
+                    <mat-icon>directions_car</mat-icon>
+                  </div>
+                  <p class="model-description">Detalles del modelo: {{ model.Model_Name }}</p>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
     </div>
-
     <div *ngIf="models?.length === 0" class="error-message">
       <p>No hay modelos disponibles para el tipo seleccionado.</p>
     </div>

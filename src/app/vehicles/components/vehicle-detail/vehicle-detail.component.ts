@@ -67,11 +67,12 @@ export class VehicleDetailComponent {
   }
 
   loadVehicleDetails(): void {
-    this.store.dispatch(loadVehicleModels({ make: this.make }));
+    // this.store.dispatch(loadVehicleModels({ make: this.make }));
     this.store.dispatch(loadVehicleTypes({ make: this.make }));
   }
 
   onTypeSelect(typeName: string): void {
+    console.log('Tipo seleccionado en el padre:', typeName);
     this.selectedVehicleType = typeName;
     this.store.dispatch(loadVehicleModels({ make: typeName }));
   }

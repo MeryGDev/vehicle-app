@@ -10,7 +10,7 @@
     </div>
 
     <div *ngIf="types && types.length > 0">
-      <h3>Selecciona un tipo de vehículo para ver los modelos disponibles.</h3>
+      <h3 class="vehicle-select-title">Selecciona un tipo de vehículo para ver los modelos disponibles.</h3>
       <mat-form-field appearance="fill" class="vehicle-select">
         <mat-label>Tipos de vehículos</mat-label>
         <mat-select (selectionChange)="selectType($event.value)">

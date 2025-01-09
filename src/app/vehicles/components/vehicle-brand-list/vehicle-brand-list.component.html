@@ -11,9 +11,7 @@
 
   <cdk-virtual-scroll-viewport itemSize="150" class="virtual-scroll-container">
     <div class="grid-container">
-      <!-- Usamos *cdkVirtualFor para iterar sobre las filas -->
       <div *cdkVirtualFor="let row of rows$ | async" class="grid-row">
-        <!-- Iteramos sobre las marcas dentro de la fila -->
         <div *ngFor="let brand of row" class="grid-item">
           <mat-card>
             <mat-card-header>
@@ -28,4 +26,5 @@
       </div>
     </div>
   </cdk-virtual-scroll-viewport>
+
 </div>

@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { MaterialModule } from '../../../shared/material.module';
-import { filterVehicleBrands, loadVehicleBrands } from '../../../store/actions';
-import { selectFilteredVehicleBrands, selectError, selectLoadingBrands } from '../../../store/selectors';
+import { filterVehicleMakes, loadVehicleMakes } from '../../../store/actions';
+import { selectFilteredVehicleMakes, selectError, selectLoadingBrands } from '../../../store/selectors';
 
 import { SearchComponent } from '../search/search.component';
-import { VehicleBrand } from '../../models/vehicle-brand.model';
+import { VehicleMake } from '../../models/vehicle-brand.model';
 
 @Component({
   selector: 'app-vehicle-brand-list',
@@ -21,10 +21,10 @@ import { VehicleBrand } from '../../models/vehicle-brand.model';
   templateUrl: './vehicle-brand-list.component.html',
   styleUrl: './vehicle-brand-list.component.scss',
 })
-export class VehicleBrandListComponent implements OnInit {
+export class VehicleMakeListComponent implements OnInit {
   // State properties
-  brands$: Observable<VehicleBrand[]> = new Observable();
-  rows$: Observable<VehicleBrand[][]> = new Observable();
+  brands$: Observable<VehicleMake[]> = new Observable();
+  rows$: Observable<VehicleMake[][]> = new Observable();
   loadingBrands$: Observable<boolean> = new Observable();
   error$: Observable<string | null> = new Observable();
   searchQuery: string = '';
@@ -35,8 +35,8 @@ export class VehicleBrandListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Suscríbete a los selectores del store para obtener los valores actualizados
-    this.brands$ = this.store.pipe(select(selectFilteredVehicleBrands));
+    // Subscribe to store selectors to get updated values
+    this.brands$ = this.store.pipe(select(selectFilteredVehicleMakes));
     this.loadingBrands$ = this.store.pipe(select(selectLoadingBrands));
     this.error$ = this.store.pipe(select(selectError));
 
@@ -52,11 +52,11 @@ export class VehicleBrandListComponent implements OnInit {
     );
 
     // Dispatch the action to load brands
-    this.store.dispatch(loadVehicleBrands());
+    this.store.dispatch(loadVehicleMakes());
   }
 
   onSearchChanged(searchQuery: string): void {
-    this.store.dispatch(filterVehicleBrands({ searchQuery }));
+    this.store.dispatch(filterVehicleMakes({ searchQuery }));
   }
 
   viewDetails(brand: string): void {

@@ -7,10 +7,13 @@ import { VehicleService } from '../../../vehicles/services/vehicle.service';
   selector: 'app-navbar',
   imports: [MaterialModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  constructor(private router: Router, private vehicleService: VehicleService ) {}
+  constructor(
+    private router: Router,
+    private vehicleService: VehicleService
+  ) {}
 
   // Método para navegar a la página de inicio (listado de marcas)
   navigateToHome(): void {
@@ -23,7 +26,7 @@ export class NavbarComponent {
   }
 
   // ngOnInit(): void {
-  //   this.vehicleService.getBrands().subscribe({
+  //   this.vehicleService.getMakes().subscribe({
   //     next: (brands) => {
   //       console.log('Marcas de vehículos obtenidas:', brands);
   //     },

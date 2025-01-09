@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  loadVehicleBrands,
-  loadVehicleBrandsSuccess,
-  loadVehicleBrandsFailure,
-  filterVehicleBrands,
+  loadVehicleMakes,
+  loadVehicleMakesSuccess,
+  loadVehicleMakesFailure,
+  filterVehicleMakes,
   loadVehicleModelsSuccess,
   loadVehicleModelsFailure,
   loadVehicleTypesSuccess,
@@ -11,14 +11,17 @@ import {
   loadVehicleModels,
   loadVehicleTypes,
   resetVehicleData,
+  loadVehicleModelsByType,
+  loadVehicleModelsByTypeFailure,
+  loadVehicleModelsByTypeSuccess,
 } from './actions';
-import { VehicleBrand } from '../vehicles/models/vehicle-brand.model';
+import { VehicleMake } from '../vehicles/models/vehicle-brand.model';
 import { VehicleModel } from '../vehicles/models/vehicle-model.model';
 import { VehicleType } from '../vehicles/models/vehicle-type.model';
 
 export interface VehicleState {
-  brands: VehicleBrand[];
-  filteredBrands: VehicleBrand[];
+  brands: VehicleMake[];
+  filteredBrands: VehicleMake[];
   models: VehicleModel[];
   vehicleTypes: VehicleType[];
   loadingBrands: boolean;
@@ -42,20 +45,20 @@ export const initialState: VehicleState = {
 
 export const vehicleReducer = createReducer(
   initialState,
-  on(loadVehicleBrands, (state) => ({ ...state, loadingBrands: true })), // Activar estado de carga
-  on(loadVehicleBrandsSuccess, (state, { brands }) => ({
+  on(loadVehicleMakes, (state) => ({ ...state, loadingBrands: true })), // Activar estado de carga
+  on(loadVehicleMakesSuccess, (state, { brands }) => ({
     ...state,
     brands,
     filteredBrands: brands,
     loadingBrands: false,
     error: null,
   })),
-  on(loadVehicleBrandsFailure, (state, { error }) => ({
+  on(loadVehicleMakesFailure, (state, { error }) => ({
     ...state,
     loadingBrands: false,
     error,
   })),
-  on(filterVehicleBrands, (state, { searchQuery }) => {
+  on(filterVehicleMakes, (state, { searchQuery }) => {
     const filteredBrands = state.brands.filter((brand) =>
       brand.Make_Name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -65,18 +68,6 @@ export const vehicleReducer = createReducer(
       filteredBrands,
     };
   }),
-  on(loadVehicleModels, (state) => ({ ...state, loadingModels: true })),
-  on(loadVehicleModelsSuccess, (state, { models }) => ({
-    ...state,
-    loadingModels: false,
-    models,
-    error: null,
-  })),
-  on(loadVehicleModelsFailure, (state, { error }) => ({
-    ...state,
-    loadingModels: false,
-    error,
-  })),
   on(loadVehicleTypes, (state) => ({ ...state, loadingTypes: true })),
   on(loadVehicleTypesSuccess, (state, { vehicleTypes }) => ({
     ...state,
@@ -87,6 +78,18 @@ export const vehicleReducer = createReducer(
   on(loadVehicleTypesFailure, (state, { error }) => ({
     ...state,
     loadingTypes: false,
+    error,
+  })),
+  on(loadVehicleModelsByType, (state) => ({ ...state, loadingModels: true })),
+  on(loadVehicleModelsByTypeSuccess, (state, { models }) => ({
+    ...state,
+    loadingModels: false,
+    models,
+    error: null,
+  })),
+  on(loadVehicleModelsByTypeFailure, (state, { error }) => ({
+    ...state,
+    loadingModels: false,
     error,
   })),
   on(resetVehicleData, (state) => ({

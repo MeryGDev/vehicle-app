@@ -3,9 +3,9 @@ import { VehicleState } from './reducers';
 
 export const selectVehicleState = createFeatureSelector<VehicleState>('vehicles');
 
-export const selectVehicleBrands = createSelector(selectVehicleState, (state: VehicleState) => state.brands);
+export const selectVehicleMakes = createSelector(selectVehicleState, (state: VehicleState) => state.brands);
 
-export const selectFilteredVehicleBrands = createSelector(
+export const selectFilteredVehicleMakes = createSelector(
   selectVehicleState,
   (state: VehicleState) => state.filteredBrands ?? []
 );

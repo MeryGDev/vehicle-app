@@ -1,24 +1,30 @@
 mat-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(63, 81, 176, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(63, 81, 176, 1) 35%, rgba(0, 212, 255, 1) 100%);
 }
 
 button {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .navbar-title {
-    flex: 1;
-    /* Causes the title to stretch to fill the space */
-    text-align: center;
-    font-size: 23px;
+  flex: 1;
+  /* Causes the title to stretch to fill the space */
+  text-align: center;
+  font-size: 23px;
 }
 
 :host {
-    background: var(--mat-sys-primary-container);
-    color: var(--mat-sys-on-primary-container);
-    border: 1px solid var(--mat-sys-outline-variant);
-    font: var(--mat-sys-body-large);
+  background: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  border: 1px solid var(--mat-sys-outline-variant);
+  font: var(--mat-sys-body-large);
+}
+
+@media screen and (max-width: 768px) {
+  .home-button {
+    display: none;
+  }
 }

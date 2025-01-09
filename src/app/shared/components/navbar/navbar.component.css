@@ -22,3 +22,9 @@ button {
   border: 1px solid var(--mat-sys-outline-variant);
   font: var(--mat-sys-body-large);
 }
+
+@media screen and (max-width: 768px) {
+  .home-button {
+    display: none;
+  }
+}

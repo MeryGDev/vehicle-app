@@ -2,6 +2,7 @@
   [types]="(vehicleTypes$ | async) || []"
   [loading]="(loadingTypes$ | async) || false"
   [error]="error$ | async"
+  [selectedMake]="make"
   (onSelectType)="onTypeSelect($event)"
 ></app-vehicle-types>
 
