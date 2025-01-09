@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of } from 'rxjs';
-import { VehicleApiResponse, VehicleMake } from '../models/vehicle-brand.model';
+import { VehicleApiResponse, VehicleMake } from '../models/vehicle-make.model';
 import { VehicleModel, VehicleModelsResponse } from '../models/vehicle-model.model';
 import { VehicleType, VehicleTypesResponse } from '../models/vehicle-type.model';
 

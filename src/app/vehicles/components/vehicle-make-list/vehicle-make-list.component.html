@@ -1,8 +1,8 @@
 <h1 [ngStyle]="{ padding: '20px' }" class="mat-margin">Encuentra tu fabricante favorito:</h1>
 
-<div [ngStyle]="{ padding: '20px' }" *ngIf="loadingBrands$ | async">Cargando marcas...</div>
+<div [ngStyle]="{ padding: '20px' }" *ngIf="loadingMakes$ | async">Cargando marcas...</div>
 
-<div *ngIf="!(loadingBrands$ | async)">
+<div *ngIf="!(loadingMakes$ | async)">
   <div *ngIf="error$ | async as error" class="error">
     <p>{{ error }}</p>
   </div>
@@ -12,19 +12,18 @@
   <cdk-virtual-scroll-viewport itemSize="150" class="virtual-scroll-container">
     <div class="grid-container">
       <div *cdkVirtualFor="let row of rows$ | async" class="grid-row">
-        <div *ngFor="let brand of row" class="grid-item">
+        <div *ngFor="let make of row" class="grid-item">
           <mat-card>
             <mat-card-header>
               <mat-icon>directions_car</mat-icon>
-              <mat-card-title>{{ brand.Make_Name }}</mat-card-title>
+              <mat-card-title>{{ make.Make_Name }}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <button mat-raised-button color="primary" (click)="viewDetails(brand.Make_Name)">Ver detalles</button>
+              <button mat-raised-button color="primary" (click)="viewDetails(make.Make_Name)">Ver detalles</button>
             </mat-card-content>
           </mat-card>
         </div>
       </div>
     </div>
   </cdk-virtual-scroll-viewport>
-
 </div>

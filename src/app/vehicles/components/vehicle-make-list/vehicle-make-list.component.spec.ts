@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { VehicleMakeListComponent } from './vehicle-brand-list.component';
+import { VehicleMakeListComponent } from './vehicle-make-list.component';
 import { VehicleService } from '../../services/vehicle.service';
 
 describe('VehicleMakeListComponent', () => {

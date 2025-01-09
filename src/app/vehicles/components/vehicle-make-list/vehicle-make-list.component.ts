@@ -10,22 +10,22 @@ import { map } from 'rxjs/operators';
 
 import { MaterialModule } from '../../../shared/material.module';
 import { filterVehicleMakes, loadVehicleMakes } from '../../../store/actions';
-import { selectFilteredVehicleMakes, selectError, selectLoadingBrands } from '../../../store/selectors';
+import { selectFilteredVehicleMakes, selectError, selectLoadingMakes } from '../../../store/selectors';
 
 import { SearchComponent } from '../search/search.component';
-import { VehicleMake } from '../../models/vehicle-brand.model';
+import { VehicleMake } from '../../models/vehicle-make.model';
 
 @Component({
-  selector: 'app-vehicle-brand-list',
+  selector: 'app-vehicle-make-list',
   imports: [CommonModule, MaterialModule, ScrollingModule, FormsModule, SearchComponent],
-  templateUrl: './vehicle-brand-list.component.html',
-  styleUrl: './vehicle-brand-list.component.scss',
+  templateUrl: './vehicle-make-list.component.html',
+  styleUrl: './vehicle-make-list.component.scss',
 })
 export class VehicleMakeListComponent implements OnInit {
   // State properties
-  brands$: Observable<VehicleMake[]> = new Observable();
+  makes$: Observable<VehicleMake[]> = new Observable();
   rows$: Observable<VehicleMake[][]> = new Observable();
-  loadingBrands$: Observable<boolean> = new Observable();
+  loadingMakes$: Observable<boolean> = new Observable();
   error$: Observable<string | null> = new Observable();
   searchQuery: string = '';
 
@@ -36,22 +36,22 @@ export class VehicleMakeListComponent implements OnInit {
 
   ngOnInit(): void {
     // Subscribe to store selectors to get updated values
-    this.brands$ = this.store.pipe(select(selectFilteredVehicleMakes));
-    this.loadingBrands$ = this.store.pipe(select(selectLoadingBrands));
+    this.makes$ = this.store.pipe(select(selectFilteredVehicleMakes));
+    this.loadingMakes$ = this.store.pipe(select(selectLoadingMakes));
     this.error$ = this.store.pipe(select(selectError));
 
-    this.rows$ = this.brands$.pipe(
-      map((brands) => {
-        if (!brands || brands.length === 0) return [];
+    this.rows$ = this.makes$.pipe(
+      map((makes) => {
+        if (!makes || makes.length === 0) return [];
         const rows = [];
-        for (let i = 0; i < brands.length; i += 4) {
-          rows.push(brands.slice(i, i + 4)); // Divide brands into rows of 4
+        for (let i = 0; i < makes.length; i += 4) {
+          rows.push(makes.slice(i, i + 4)); // Divide makes into rows of 4
         }
         return rows;
       })
     );
 
-    // Dispatch the action to load brands
+    // Dispatch the action to load makes
     this.store.dispatch(loadVehicleMakes());
   }
 
@@ -59,8 +59,8 @@ export class VehicleMakeListComponent implements OnInit {
     this.store.dispatch(filterVehicleMakes({ searchQuery }));
   }
 
-  viewDetails(brand: string): void {
-    this.router.navigate(['/vehicle', brand]);
+  viewDetails(make: string): void {
+    this.router.navigate(['/vehicle', make]);
   }
 
   ngAfterViewInit() {

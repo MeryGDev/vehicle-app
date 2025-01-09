@@ -18,7 +18,7 @@ import {
   loadVehicleTypesSuccess,
   loadVehicleTypesFailure,
 } from './actions';
-import { VehicleMake } from '../vehicles/models/vehicle-brand.model';
+import { VehicleMake } from '../vehicles/models/vehicle-make.model';
 import { VehicleModel } from '../vehicles/models/vehicle-model.model';
 
 @Injectable()
@@ -31,9 +31,9 @@ export class VehicleEffects {
       ofType(loadVehicleMakes),
       switchMap(() =>
         this.vehicleService.getMakes().pipe(
-          map((brands: VehicleMake[]) => loadVehicleMakesSuccess({ brands })),
+          map((makes: VehicleMake[]) => loadVehicleMakesSuccess({ makes })),
           catchError((error) =>
-            of(loadVehicleMakesFailure({ error: error?.message || 'Failed to load vehicle brands' }))
+            of(loadVehicleMakesFailure({ error: error?.message || 'Failed to load vehicle makes' }))
           )
         )
       )

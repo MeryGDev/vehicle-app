@@ -15,16 +15,16 @@ import {
   loadVehicleModelsByTypeFailure,
   loadVehicleModelsByTypeSuccess,
 } from './actions';
-import { VehicleMake } from '../vehicles/models/vehicle-brand.model';
+import { VehicleMake } from '../vehicles/models/vehicle-make.model';
 import { VehicleModel } from '../vehicles/models/vehicle-model.model';
 import { VehicleType } from '../vehicles/models/vehicle-type.model';
 
 export interface VehicleState {
-  brands: VehicleMake[];
-  filteredBrands: VehicleMake[];
+  makes: VehicleMake[];
+  filteredMakes: VehicleMake[];
   models: VehicleModel[];
   vehicleTypes: VehicleType[];
-  loadingBrands: boolean;
+  loadingMakes: boolean;
   loadingModels: boolean;
   loadingTypes: boolean;
   error: string | null;
@@ -32,11 +32,11 @@ export interface VehicleState {
 }
 
 export const initialState: VehicleState = {
-  brands: [],
-  filteredBrands: [],
+  makes: [],
+  filteredMakes: [],
   models: [],
   vehicleTypes: [],
-  loadingBrands: false,
+  loadingMakes: false,
   loadingModels: false,
   loadingTypes: false,
   error: null,
@@ -45,27 +45,27 @@ export const initialState: VehicleState = {
 
 export const vehicleReducer = createReducer(
   initialState,
-  on(loadVehicleMakes, (state) => ({ ...state, loadingBrands: true })), // Activar estado de carga
-  on(loadVehicleMakesSuccess, (state, { brands }) => ({
+  on(loadVehicleMakes, (state) => ({ ...state, loadingMakes: true })), // Activar estado de carga
+  on(loadVehicleMakesSuccess, (state, { makes }) => ({
     ...state,
-    brands,
-    filteredBrands: brands,
-    loadingBrands: false,
+    makes,
+    filteredMakes: makes,
+    loadingMakes: false,
     error: null,
   })),
   on(loadVehicleMakesFailure, (state, { error }) => ({
     ...state,
-    loadingBrands: false,
+    loadingMakes: false,
     error,
   })),
   on(filterVehicleMakes, (state, { searchQuery }) => {
-    const filteredBrands = state.brands.filter((brand) =>
-      brand.Make_Name.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredMakes = state.makes.filter((make) =>
+      make.Make_Name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     return {
       ...state,
       searchQuery,
-      filteredBrands,
+      filteredMakes,
     };
   }),
   on(loadVehicleTypes, (state) => ({ ...state, loadingTypes: true })),

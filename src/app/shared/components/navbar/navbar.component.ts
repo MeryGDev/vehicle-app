@@ -27,8 +27,8 @@ export class NavbarComponent {
 
   // ngOnInit(): void {
   //   this.vehicleService.getMakes().subscribe({
-  //     next: (brands) => {
-  //       console.log('Marcas de vehículos obtenidas:', brands);
+  //     next: (makes) => {
+  //       console.log('Marcas de vehículos obtenidas:', makes);
   //     },
   //     error: (err) => {
   //       console.error('Error al obtener marcas:', err);

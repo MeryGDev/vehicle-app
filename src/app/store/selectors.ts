@@ -3,18 +3,18 @@ import { VehicleState } from './reducers';
 
 export const selectVehicleState = createFeatureSelector<VehicleState>('vehicles');
 
-export const selectVehicleMakes = createSelector(selectVehicleState, (state: VehicleState) => state.brands);
+export const selectVehicleMakes = createSelector(selectVehicleState, (state: VehicleState) => state.makes);
 
 export const selectFilteredVehicleMakes = createSelector(
   selectVehicleState,
-  (state: VehicleState) => state.filteredBrands ?? []
+  (state: VehicleState) => state.filteredMakes ?? []
 );
 
 export const selectVehicleModels = createSelector(selectVehicleState, (state: VehicleState) => state.models ?? []);
 
 export const selectVehicleTypes = createSelector(selectVehicleState, (state: VehicleState) => state.vehicleTypes ?? []);
 
-export const selectLoadingBrands = createSelector(selectVehicleState, (state: VehicleState) => state.loadingBrands);
+export const selectLoadingMakes = createSelector(selectVehicleState, (state: VehicleState) => state.loadingMakes);
 
 export const selectLoadingModels = createSelector(selectVehicleState, (state: VehicleState) => state.loadingModels);
 

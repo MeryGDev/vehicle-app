@@ -1,16 +1,13 @@
 import { createAction, props } from '@ngrx/store';
-import { VehicleMake } from '../vehicles/models/vehicle-brand.model';
+import { VehicleMake } from '../vehicles/models/vehicle-make.model';
 import { VehicleModel } from '../vehicles/models/vehicle-model.model';
 import { VehicleType } from '../vehicles/models/vehicle-type.model';
 
-export const loadVehicleMakes = createAction('[Vehicles] Load Brands');
-export const loadVehicleMakesSuccess = createAction(
-  '[Vehicles] Load Brands Success',
-  props<{ brands: VehicleMake[] }>()
-);
-export const loadVehicleMakesFailure = createAction('[Vehicles] Load Brands Failure', props<{ error: string }>());
+export const loadVehicleMakes = createAction('[Vehicles] Load Makes');
+export const loadVehicleMakesSuccess = createAction('[Vehicles] Load Makes Success', props<{ makes: VehicleMake[] }>());
+export const loadVehicleMakesFailure = createAction('[Vehicles] Load Makes Failure', props<{ error: string }>());
 
-export const filterVehicleMakes = createAction('[Vehicle] Filter Brands', props<{ searchQuery: string }>());
+export const filterVehicleMakes = createAction('[Vehicle] Filter Makes', props<{ searchQuery: string }>());
 
 export const loadVehicleModels = createAction('[Vehicle] Load Vehicle Models', props<{ make: string }>());
 
